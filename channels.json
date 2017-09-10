@@ -1,0 +1,26 @@
+[
+    {
+        "id": "I10.1.18994.tvguide.com",
+        "key": "tva",
+        "name": "TVA",
+        "icon": "tva.png"
+    },
+    {
+        "id": "I2.1.15756.tvguide.com",
+        "key": "radiocanada",
+        "name": "Radio-Canada",
+        "icon": "rc.png"
+    },
+    {
+        "id": "I35.1.19351.tvguide.com",
+        "key": "v",
+        "name": "V",
+        "icon": "v.png"
+    },
+    {
+        "id": "I17.1.21607.tvguide.com",
+        "key": "civm",
+        "name": "Télé-Québec",
+        "icon": "tqc.png"
+    }
+]

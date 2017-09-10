@@ -1,0 +1,6 @@
+[submodule "bundles/IPTV.bundle"]
+	path = bundles/IPTV.bundle
+	url = https://github.com/Cigaras/IPTV.bundle
+[submodule "bundles/WebTools.bundle"]
+	path = bundles/WebTools.bundle
+	url = https://github.com/ukdtom/WebTools.bundle

@@ -1,0 +1,25 @@
+{
+  "name": "tele",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "export_config": "eval $(cat .config | sed 's/^/export /')",
+    "xml": "npm run export_config && ./zap2xml.pl -z -e -u $TVGUIDE_USERNAME -p $TVGUIDE_PASSWORD -o ./resources/guide.xml",
+    "sync:bundles": "npm run export_config && rsync -avh -e ssh ./bundles/ \"${PLEX_PLUGINS_PATH// /\\ }/\"",
+    "sync": "npm run export_config && rsync -avh -e ssh ./resources/ \"${PLEX_PLUGINS_PATH// /\\ }/IPTV.bundle/Contents/Resources/\"",
+
+    "build": "node ./index.js && npm run xml",
+    "start": "npm run build && npm run sync:bundles && npm run sync "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^2.0.0",
+    "jsdom": "^9.11.0",
+    "lodash": "^4.17.4",
+    "request": "^2.79.0"
+  }
+}

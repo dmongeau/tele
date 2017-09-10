@@ -1,0 +1,9 @@
+#EXTM3U
+#EXTINF:0 tvg-id="I10.1.18994.tvguide.com" tvg-logo="tva.png" group-title="Québec" audio_codec="mp3" video_codec="h264" protocol="hls" container="mpegts" optimized_for_streaming="1", TVA
+http://opus.re/direct/50cc59d0953efd6e672cc8fd8332fe6ab59b2918/c2101tva/chunklist.m3u8
+#EXTINF:0 tvg-id="I2.1.15756.tvguide.com" tvg-logo="rc.png" group-title="Québec" audio_codec="mp3" video_codec="h264" protocol="hls" container="mpegts" optimized_for_streaming="1", Radio-Canada
+http://opus.re/direct/50cc59d0953efd6e672cc8fd8332fe6ab59b2918/cbc2131/chunklist.m3u8
+#EXTINF:0 tvg-id="I35.1.19351.tvguide.com" tvg-logo="v.png" group-title="Québec" audio_codec="mp3" video_codec="h264" protocol="hls" container="mpegts" optimized_for_streaming="1", V
+http://opus.re/direct/50cc59d0953efd6e672cc8fd8332fe6ab59b2918/vtele2131/chunklist.m3u8
+#EXTINF:0 tvg-id="I17.1.21607.tvguide.com" tvg-logo="tqc.png" group-title="Québec" audio_codec="mp3" video_codec="h264" protocol="hls" container="mpegts" optimized_for_streaming="1", Télé-Québec
+http://opus.re/direct/50cc59d0953efd6e672cc8fd8332fe6ab59b2918/telequebec2131/chunklist.m3u8
