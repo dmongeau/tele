@@ -1,0 +1,6 @@
+#EXTM3U
+<%
+channels.forEach(function (channel) {
+%>#EXTINF:0 tvg-id="<%= channel.tvguide_id %>" tvg-logo="<%= channel.icon %>" group-title="<%= channel.group %>" audio_codec="<%= channel.audio_codec %>" video_codec="<%= channel.video_codec %>" protocol="<%= channel.protocol %>" container="<%= channel.container %>", <%= channel.name %>
+<%= channel.stream %>
+<% }) %>

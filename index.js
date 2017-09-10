@@ -3,13 +3,24 @@ const jsdom = require('jsdom');
 const url = require('url');
 const path = require('path');
 const _ = require('lodash');
+const fs = require('fs');
 const fse = require('fs-extra');
 
 const channels = require('./channels.json');
 
-const channelLine = _.template(
-    '#EXTINF:0 tvg-id="<%= id %>" tvg-logo="<%= icon %>" group-title="Québec" audio_codec="mp3" video_codec="h264" protocol="hls" container="mpegts", <%= name %>'
+const channelsTemplate = _.template(
+    fse.readFileSync(
+        path.join(__dirname, '/playlist.ejs'),
+    ),
 );
+
+const defaultChannel = {
+    group: 'Québec',
+    video_codec: 'h264',
+    audio_codec: 'mp3',
+    protocol: 'hls',
+    container: 'mpegts'
+};
 
 const pageUrl = 'http://opus.re/index-PLAYLIST.php';
 const scripts = [
@@ -26,40 +37,36 @@ jsdom.env({
     headers: headers,
     userAgent: headers['User-Agent'],
     done: function(err, window) {
-        var links = window.$('li a');
-        var streams = {};
-        var lines = [
-            '#EXTM3U'
-        ]
-        var link, src, img, name, streamUrl, matches;
-        for(var i = 0, l = links.length; i < l; i++) {
-            link = links[i];
-            src = link.getAttribute('href');
-            img = link.childNodes[0];
-            name = (img ? (img.getAttribute('title') || img.getAttribute('alt')) : '')
+        const links = window.$('li a');
+
+        const channelsForPlaylist = [];
+        links.each(function (key, link) {
+            const src = link.getAttribute('href');
+            const matches = (src || '').match(/loadVideo\(\'([^\'\)\,]+).*/i);
+            if (!matches || link.childNodes.length < 1) {
+                return;
+            }
+            const streamUrl = matches[1];
+            const img = link.childNodes[0];
+            const name = (img.getAttribute('title') || img.getAttribute('alt'))
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/gi, '');
-            //matches = src.match(/u=([a-z0-9\.\/\:]+)/i);
-            matches = src.match(/loadVideo\(\'([^\'\)\,]+).*/i);
-            streamUrl = matches ? matches[1] : null;
-            channel = channels.find(function(channel) {
-                return channel.key === name;
+            const channel = channels.find(function(channel) {
+                return channel.opus_key === name;
             });
             if(channel) {
-                streams[name] = streamUrl;
+                const channelWithPlaylist = Object.assign({}, defaultChannel, channel, {
+                    stream: streamUrl,
+                });
+                channelsForPlaylist.push(channelWithPlaylist);
             }
-        }
+        });
 
-        var channel;
-        for(i = 0, l = channels.length; i < l; i++) {
-            channel = channels[i];
-            stream = streams[channel.key] || null;
-            if(stream) {
-                lines.push(channelLine(channel));
-                lines.push(stream);
-            }
-        }
-
-        fse.outputFileSync(path.join(__dirname, '/resources/playlist.m3u'), lines.join('\n'));
+        fse.outputFileSync(
+            path.join(__dirname, '/resources/playlist.m3u'),
+            channelsTemplate({
+                channels: channelsForPlaylist,
+            }),
+        );
     }
 });

@@ -1,25 +1,25 @@
 [
     {
-        "id": "I10.1.18994.tvguide.com",
-        "key": "tva",
+        "tvguide_id": "I10.1.18994.tvguide.com",
+        "opus_key": "tva",
         "name": "TVA",
         "icon": "tva.png"
     },
     {
-        "id": "I2.1.15756.tvguide.com",
-        "key": "radiocanada",
+        "tvguide_id": "I2.1.15756.tvguide.com",
+        "opus_key": "radiocanada",
         "name": "Radio-Canada",
         "icon": "rc.png"
     },
     {
-        "id": "I35.1.19351.tvguide.com",
-        "key": "v",
+        "tvguide_id": "I35.1.19351.tvguide.com",
+        "opus_key": "v",
         "name": "V",
         "icon": "v.png"
     },
     {
-        "id": "I17.1.21607.tvguide.com",
-        "key": "civm",
+        "tvguide_id": "I17.1.21607.tvguide.com",
+        "opus_key": "civm",
         "name": "Télé-Québec",
         "icon": "tqc.png"
     }
