@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "export_config": "eval $(cat .config | sed 's/^/export /')",
-    "xml": "npm run export_config && ./zap2xml.pl -z -e -u $TVGUIDE_USERNAME -p $TVGUIDE_PASSWORD -o ./resources/guide.xml",
+    "xml": "npm run export_config && ./vendor/zap2xml.pl -z -e -u $TVGUIDE_USERNAME -p $TVGUIDE_PASSWORD -o ./resources/guide.xml",
     "sync:bundles": "npm run export_config && rsync -avh -e ssh ./bundles/ \"${PLEX_PLUGINS_PATH// /\\ }/\"",
     "sync": "npm run export_config && rsync -avh -e ssh ./resources/ \"${PLEX_PLUGINS_PATH// /\\ }/IPTV.bundle/Contents/Resources/\"",
 
