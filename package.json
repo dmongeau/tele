@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "export_config": "eval $(cat .config | sed 's/^/export /')",
     "build:guide": "npm run export_config && ./vendor/zap2xml.pl -z -e -u $TVGUIDE_USERNAME -p $TVGUIDE_PASSWORD -o ./resources/guide.xml",
-    "build:playlist": "npm run export_config && ./vendor/zap2xml.pl -z -e -u $TVGUIDE_USERNAME -p $TVGUIDE_PASSWORD -o ./resources/guide.xml",
+    "build:playlist": "node ./index.js",
     "sync:bundles": "npm run export_config && rsync -avh -e ssh ./bundles/ \"${PLEX_PLUGINS_PATH// /\\ }/\"",
     "sync:resources": "npm run export_config && rsync -avh -e ssh ./resources/ \"${PLEX_PLUGINS_PATH// /\\ }/IPTV.bundle/Contents/Resources/\"",
 
