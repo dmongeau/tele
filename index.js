@@ -8,7 +8,7 @@ const fse = require('fs-extra');
 const channels = require('./channels.json');
 
 const channelLine = _.template(
-    '#EXTINF:0 tvg-id="<%= id %>" tvg-logo="<%= icon %>" group-title="Québec" audio_codec="mp3" video_codec="h264" protocol="hls" container="mpegts" optimized_for_streaming="1", <%= name %>'
+    '#EXTINF:0 tvg-id="<%= id %>" tvg-logo="<%= icon %>" group-title="Québec" audio_codec="mp3" video_codec="h264" protocol="hls" container="mpegts", <%= name %>'
 );
 
 const pageUrl = 'http://opus.re/index-PLAYLIST.php';
